@@ -1,40 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>PUABO OS V200</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>PUABO OS V200 - Creator OS</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0; height: 100%; width: 100%;
+      background: #0d0d0d;
+      color: #00ffcc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      overflow: hidden;
+    }
+    header {
+      width: 100%;
+      background: #001f1f;
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0 2px 6px #00333388;
+      user-select: none;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      width: 90%;
+      margin-top: 2rem;
+      gap: 2rem;
+      overflow: hidden;
+    }
+    #module-list-container {
+      background: #002222cc;
+      border-radius: 10px;
+      width: 320px;
+      min-height: 400px;
+      padding: 1rem;
+      box-shadow: 0 0 10px #00ffcc66;
+      overflow-y: auto;
+    }
+    #module-list-container h2 {
+      margin-top: 0;
+      font-weight: 700;
+      border-bottom: 1px solid #00ffcc44;
+      padding-bottom: 0.5rem;
+    }
+    ul#modules-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul#modules-list li {
+      background: #004444cc;
+      margin: 0.5rem 0;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: default;
+      transition: background 0.3s;
+      box-shadow: 0 0 5px #00ffcc44;
+    }
+    ul#modules-list li:hover {
+      background: #00ffcccc;
+      color: #003333;
+      box-shadow: 0 0 12px #00ffccaa;
+    }
+    #launch-container {
+      flex: 1;
+      background: #002222cc;
+      border-radius: 10px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px #00ffcc66;
+    }
+    #launch-container p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      font-weight: 600;
+    }
+    #launch-btn {
+      background: #00ffcc;
+      border: none;
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1rem 3rem;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ffcccc;
+      transition: background 0.3s;
+      user-select: none;
+    }
+    #launch-btn:hover {
+      background: #009e87;
+      box-shadow: 0 0 14px #009e87cc;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>PUABO OS V200</h1>
-    <p>System Modules:</p>
-    <ul id="modules-list">Loading...</ul>
-  </div>
+  <header>PUABO OS V200 - Creator OS</header>
+  <main>
+    <section id="module-list-container">
+      <h2>System Modules</h2>
+      <ul id="modules-list">Loading modules...</ul>
+    </section>
+    <section id="launch-container">
+      <p>All systems connected. Ready to deploy.</p>
+      <button id="launch-btn">Launch PUABO OS</button>
+    </section>
+  </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script>
-    window.onload = function() {
-      fetch('./puaboos.yaml')
-        .then(response => {
-          if (!response.ok) throw new Error("Failed to load YAML file: " + response.status);
-          return response.text();
-        })
-        .then(yamlText => {
-          const data = jsyaml.load(yamlText);
-          const modulesList = document.getElementById('modules-list');
-          modulesList.innerHTML = '';
+    async function loadModules() {
+      try {
+        const response = await fetch('puaboos.yaml');
+        if (!response.ok) throw new Error(`YAML fetch failed: ${response.status}`);
+        const yamlText = await response.text();
+        const data = jsyaml.load(yamlText);
+        const modulesList = document.getElementById('modules-list');
+        modulesList.innerHTML = ''; // clear loading
 
-          data.modules.forEach(module => {
-            const li = document.createElement('li');
-            li.textContent = module.name;
-            modulesList.appendChild(li);
-          });
-        })
-        .catch(error => {
-          document.getElementById('modules-list').textContent = "Error loading modules.";
-          console.error("YAML loading error:", error);
+        data.modules.forEach(mod => {
+          const li = document.createElement('li');
+          li.textContent = mod.name;
+          modulesList.appendChild(li);
         });
-    };
+      } catch (err) {
+        document.getElementById('modules-list').textContent = 'Error loading modules.';
+        console.error(err);
+      }
+    }
+
+    document.getElementById('launch-btn').addEventListener('click', () => {
+      alert('Launching PUABO OS Modules...');
+    });
+
+    window.onload = loadModules;
   </script>
 </body>
 </html>
