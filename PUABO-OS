@@ -1,0 +1,34 @@
+# PUABO OS V200
+
+**PUABO OS V200** is a cutting-edge, browser-based operating system designed and built by PUABO Music-N-Media Group. It serves as a comprehensive creative ecosystem for independent artists, podcasters, streamers, and content creators.
+
+---
+
+## Features
+
+- **V-Screen & V-Stage**: Virtual teleprompter and studio set integration for live streaming and production.
+- **PV-Keys**: Hardware and virtual key mapping system for seamless live control.
+- **PUABO AI SDK**: Proprietary AI engine powering teleprompter synchronization, scene automation, and real-time analytics.
+- **PUABO MusicChain**: Blockchain-enabled music publishing, NFT minting, and royalty tracking system.
+- **GamePort**: Interactive gaming overlays and creator arcade modules.
+- **Creator Subscription Plans**: Monetization platform with tiered support and gated content.
+- **StreamCore**: Live video engine with multi-camera sync and overlay management.
+- **Glitch: Code of Chaos**: Immersive front-end interactive experience that welcomes users into the PUABOverse.
+- **NFT Module**: Mint, distribute, and manage limited edition digital collectibles.
+
+---
+
+## Deployment
+
+- Designed as a fully browser-based app, easily deployable via platforms like GitHub Pages, Netlify, or Vercel.
+- Connects seamlessly with the PUABOverse online platform at [https://puaboverse.online](https://puaboverse.online).
+
+---
+
+## Getting Started
+
+To run locally:
+
+```bash
+npm install
+npm start
