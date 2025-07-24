@@ -11,4 +11,31 @@
     <ul id="modules-list">Loading...</ul>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-y
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script>
+    // Fetch and parse the YAML file
+    fetch('puaboos.yaml')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to load YAML file");
+        }
+        return response.text();
+      })
+      .then(yamlText => {
+        const data = jsyaml.load(yamlText);
+        const modulesList = document.getElementById('modules-list');
+        modulesList.innerHTML = ''; // Clear loading...
+
+        data.modules.forEach(module => {
+          const li = document.createElement('li');
+          li.textContent = module.name;
+          modulesList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        document.getElementById('modules-list').textContent = "Error loading modules.";
+        console.error("YAML loading error:", error);
+      });
+  </script>
+</body>
+</html>
