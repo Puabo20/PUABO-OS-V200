@@ -1,10 +1,44 @@
-modules:
-  - name: PUABOAI SDK
-  - name: V-Caster
-  - name: StreamCore
-  - name: Glitch: Code of Chaos (Front-End)
-  - name: V-Screen
-  - name: V-Stage
-  - name: PV-Keys
-  - name: PUABOMusicChain
-  - name: Custom Branding Across OS
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PUABO OS V200</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>PUABO OS V200</h1>
+    <p>System Modules:</p>
+    <ul id="modules-list">Loading...</ul>
+  </div>
+
+  <script>
+    window.onload = function() {
+      fetch('puaboos.yaml')
+        .then(response => {
+          if (!response.ok) throw new Error("Failed to load YAML file: " + response.status);
+          return response.text();
+        })
+        .then(yamlText => {
+          const data = jsyaml.load(yamlText);
+          const modulesList = document.getElementById('modules-list');
+          modulesList.innerHTML = '';
+
+          data.modules.forEach(module => {
+            const li = document.createElement('li');
+            li.textContent = module.name;
+            modulesList.appendChild(li);
+          });
+        })
+        .catch(error => {
+          const modulesList = document.getElementById('modules-list');
+          if(modulesList) {
+            modulesList.textContent = "Error loading modules.";
+          }
+          console.error("YAML loading error:", error);
+        });
+    };
+  </script>
+</body>
+</html>
