@@ -1,0 +1,43 @@
+{
+  "name": "puabo-os-v200",
+  "version": "2.0.0",
+  "description": "PUABO OS The World's First! Creator OS - Full Stack Monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --recursive dev",
+    "build": "pnpm --recursive build",
+    "start": "pnpm --parallel --recursive start",
+    "test": "pnpm --recursive test",
+    "lint": "pnpm --recursive lint",
+    "clean": "pnpm --recursive clean && rm -rf node_modules",
+    "install:all": "pnpm install",
+    "backend:dev": "pnpm --filter backend dev",
+    "frontend:dev": "pnpm --filter frontend dev",
+    "admin:dev": "pnpm --filter admin dev"
+  },
+  "keywords": [
+    "creator-os",
+    "streaming",
+    "monetization",
+    "full-stack",
+    "monorepo"
+  ],
+  "author": "PUABO Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Puabo20/PUABO-OS-V200.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "concurrently": "^8.2.2",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
