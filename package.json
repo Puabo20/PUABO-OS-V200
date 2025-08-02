@@ -1,0 +1,42 @@
+{
+  "name": "puabo-os-v200",
+  "version": "2.0.0",
+  "description": "PUABO OS - The World's First Creator OS",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "admin", 
+    "backend",
+    "docs"
+  ],
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "build": "pnpm run --recursive build",
+    "test": "pnpm run --recursive test",
+    "lint": "pnpm run --recursive lint",
+    "clean": "pnpm run --recursive clean",
+    "frontend:dev": "pnpm --filter frontend dev",
+    "admin:dev": "pnpm --filter admin dev",
+    "backend:dev": "pnpm --filter backend dev",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [
+    "creator-os",
+    "streaming",
+    "monetization",
+    "puabo"
+  ],
+  "author": "PUABO",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
