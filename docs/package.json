@@ -1,0 +1,13 @@
+{
+  "name": "puabo-docs",
+  "version": "2.0.0",
+  "description": "PUABO OS Documentation",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "clean": "echo 'Documentation cleaned'"
+  },
+  "keywords": ["documentation", "puabo", "creator-os"],
+  "author": "PUABO",
+  "license": "MIT",
+  "packageManager": "pnpm@10.14.0"
+}
